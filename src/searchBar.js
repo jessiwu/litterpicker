@@ -12,7 +12,7 @@ function SearchBar() {
             placeholder="Search by dog breeds!"
             name="s"
         />
-        <button type="submit">Search</button>
+        <button type="search">Search</button>
     </form>);
 }
 
