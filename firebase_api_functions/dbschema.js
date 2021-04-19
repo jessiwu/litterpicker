@@ -1,5 +1,17 @@
-let db = [
-    screams = [
+let db = { 
+    users: [
+        {
+            userId: '',
+            email: '',
+            handle: '',
+            createdAt: '',
+            imageUrl: '',
+            bio: '',
+            website: '',
+            location: ''
+        }
+    ],
+    screams: [
         {
             userHandle: 'user',
             body: 'this is the scream body',
@@ -8,4 +20,4 @@ let db = [
             commentCount: 2
         }
     ]
-]
+}
