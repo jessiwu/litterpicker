@@ -1,19 +1,34 @@
 import React from 'react';
+import SearchField from 'react-search-field';
+import { useHistory } from 'react-router-dom';
 
 function SearchBar() {
+    let history = useHistory();
+
+    function onChange() {
+        // console.log(this.searchText);    
+    }
+    
+    function onEnter() {
+        history.push("/home");
+    }
+    
+    function onSearchClick() {
+        // let path = this.searchText;
+        let path = '/search';
+        console.log(path);    
+        history.push(path);
+    }
+
     return (
-    <form action="/" method="get">
-        <label htmlFor="header-search">
-            <span className="visually-hidden">Search by dog breeds!</span>
-        </label>
-        <input className='SearchField'
-            type="text"
-            id="header-search"
-            placeholder="Search by dog breeds!"
-            name="s"
-        />
-        <button type="search">Search</button>
-    </form>);
+        <SearchField
+            placeholder="Enter any dog breeds"
+            onChange={onChange}
+            onEnter={onEnter}
+            onSearchClick={onSearchClick}
+            searchText=""
+            classNames="search field"
+        />);
 }
 
 export default SearchBar;
