@@ -6,6 +6,8 @@ import AppIcon from '../images/dog_lover.png';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //MUI Stuff
 import Grid from '@material-ui/core/Grid';
@@ -13,21 +15,29 @@ import Grid from '@material-ui/core/Grid';
 const styles = {
     form: {
         textAlign: 'center'
-    },
-    image: {
+      },
+      image: {
         margin: '20px auto 20px auto'
-    },
-    pagetitle: {
+      },
+      pagetitle: {
         margin: '10px auto 10px auto'
-    },
-    textField: {
+      },
+      textField: {
         margin: '10px auto 10px auto'
-    },
-    button: {
-        marginTop: 20
-    }
-
-}
+      },
+      button: {
+        marginTop: 20,
+        position: 'relative'
+      },
+      customError: {
+        color: 'red',
+        fontSize: '0.8rem',
+        marginTop: 10
+      },
+      progress: {
+        position: 'absolute'
+      }
+};
 
 
 export class login extends Component {
@@ -53,6 +63,7 @@ export class login extends Component {
             .post('/login', userData)
             .then(res=>{
                 console.log(res.data);
+                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
                 this.setState({
                     loading: false
                 });
@@ -78,10 +89,10 @@ export class login extends Component {
             <Grid container className={classes.form}>
                 <Grid item sm/>
                 <Grid item sm>
-                    <a href='https://pngtree.com/so/apparel'>apparel png from pngtree.com</a>
+                    <a href='https://pngtree.com/so/apparel'></a>
                     <img src={AppIcon} alt="dog_lover" width = "300" height = "300"/>
                     <Typography variant="h2" className={classes.pageTitle}>
-                        Login
+                        
                     </Typography>
                     <form noValidate onSubmit={this.handleSubmit}>
                         <TextField 
@@ -107,9 +118,24 @@ export class login extends Component {
                             onChange={this.handleChange} 
                             fullWidth
                         />
-                        <Button type="submit" color="primary" className={classes.button}>
-                            login
+                        {errors.general && (
+                            <Typography variant="body2" className={classes.customError}>
+                                {errors.general}
+                            </Typography>
+                        )}
+                        <Button 
+                            type="submit" 
+                            color="primary" 
+                            className={classes.button}
+                            disabled={loading}
+                        >
+                            Login
+                            {loading && (
+                                <CircularProgress size = {20} className={classes.progress}/>
+                            )}
                         </Button>
+                        <br />
+                        <small> Don't have an account? Sign up <Link to="/signup">here</Link> </small>
                     </form>
                 </Grid>
                 <Grid item sm/>
