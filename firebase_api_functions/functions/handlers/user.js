@@ -12,7 +12,7 @@ exports.signup = (req,res) => {
         handle: req.body.handle,
     };
 
-    const { valid, errors } = validateSignupData(newUser);
+    const { errors, valid } = validateSignupData(newUser);
 
     if(!valid) return res.status(400).json(errors);
 
@@ -65,9 +65,9 @@ exports.login = (req,res) => {
         password: req.body.password
     };
 
-    const { valid, errors } = validateLoginData(user);
+    const { errors, valid } = validateLoginData(user);
 
-    if(!valid) return res.staus(400).json(erros);
+    if(!valid) return res.status(400).json(errors);
     if(Object.keys(errors).length > 0) return res.status(400).json(errors);
 
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
