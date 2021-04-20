@@ -1,16 +1,24 @@
-import logo from './dog_paw.svg';
 import './App.css';
-import SearchBar from './searchBar';
+import Home from './Home';
+import Search from './Search';
+import {
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>TheLitterPicker.com</h1>
-        <SearchBar className="SearchBar"/>
-        <img src={logo} className="App-logo" alt="logo" />
-        
-      </header>
+    <div className='App'>
+      <Switch>
+        <Route path="/search">
+          <Search />
+        </Route>
+
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+
     </div>
   );
 }

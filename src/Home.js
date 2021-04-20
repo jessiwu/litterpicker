@@ -1,5 +1,5 @@
 import React from 'react';
-import AppIcon from '../images/dog_lover.png';
+import AppIcon from './dog_lover.png';
 import SearchBar from './searchBar';
 import { withStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
@@ -16,7 +16,7 @@ const styles = {
     }
 };
 
-export class home extends React.Component {
+export class Home extends React.Component {
     constructor() {
         super();
         this.state = {};
@@ -40,5 +40,5 @@ export class home extends React.Component {
     }
 }
 
-export default withStyles(styles)(home);
+export default withStyles(styles)(Home);
 
